@@ -3,7 +3,12 @@ import { Greet } from "./greet";
 
 test("Greet renders correctly", () => {
   render(<Greet />);
-  const textElement = screen.getByText(/hello/i); // regex for case independent check
+  const textElement = screen.getByText("Hello");
   expect(textElement).toBeInTheDocument();
 });
- 
+
+test("Greet renders with a name", () => {
+  render(<Greet name="Faraz" />);
+  const textElement = screen.getByText("Hello Faraz");
+  expect(textElement).toBeInTheDocument();
+});
