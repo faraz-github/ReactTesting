@@ -43,4 +43,12 @@ describe("Greet", () => {
 //Important Questions
 
 // What to test?
+// a. Test component renders
+// b. Test component renders with props
+// c. Test component renders in diffrent states
+// d. Test component reacts to events
 // What not to test?
+// a. Implementation details
+// b. Third party code ie. external libraries packages etc
+// c. Utility functions
+// d. Code that is not important from the use point of view
