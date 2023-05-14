@@ -41,6 +41,9 @@ describe("Application", () => {
     const paragraphElement = screen.getByText("All fields are mandatory"); // Usage of getByText usually used by <p> <div> <span> tags
     expect(paragraphElement).toBeInTheDocument(); // Also selector can be used like the  getByLabelText
 
+    const imageElement = screen.getByAltText("a person with a laptop"); // Usage of getByAltText typically used by <img> <input> <area> or custom HTML Element
+    expect(imageElement).toBeInTheDocument();
+
     const nameElement = screen.getByRole("textbox", { name: "Name" }); // Usage of label case sensitive
     expect(nameElement).toBeInTheDocument();
 
