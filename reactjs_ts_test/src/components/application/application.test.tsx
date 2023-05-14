@@ -44,6 +44,9 @@ describe("Application", () => {
     const nameElement2 = screen.getByLabelText("Name", {selector: "input"}); // Usage of getByLabelText with htmlFor and id
     expect(nameElement2).toBeInTheDocument();
 
+    const nameElement3 = screen.getByPlaceholderText("Fullname"); // Usage of getByPlaceholderText
+    expect(nameElement3).toBeInTheDocument();
+
     const bioElement = screen.getByRole("textbox", { name: "Bio" });
     expect(bioElement).toBeInTheDocument();
 
