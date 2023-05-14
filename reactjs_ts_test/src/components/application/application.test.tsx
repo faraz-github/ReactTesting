@@ -42,10 +42,13 @@ describe("Application", () => {
     expect(paragraphElement).toBeInTheDocument(); // Also selector can be used like the  getByLabelText
 
     const closeElement = screen.getByTitle("close"); // Usage of getByTitle usually used tags that have title attribute in it i.e. <span>
-    expect(closeElement).toBeInTheDocument(); 
+    expect(closeElement).toBeInTheDocument();
 
     const imageElement = screen.getByAltText("a person with a laptop"); // Usage of getByAltText typically used by <img> <input> <area> or custom HTML Element
     expect(imageElement).toBeInTheDocument();
+
+    const customElement = screen.getByTestId("custom-element"); // Usage of getByTestId typically used by tags that have data-testid attribute i.e. <div>
+    expect(customElement).toBeInTheDocument();
 
     const nameElement = screen.getByRole("textbox", { name: "Name" }); // Usage of label case sensitive
     expect(nameElement).toBeInTheDocument();
