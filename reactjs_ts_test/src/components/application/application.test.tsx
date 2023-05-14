@@ -44,11 +44,14 @@ describe("Application", () => {
     const nameElement = screen.getByRole("textbox", { name: "Name" }); // Usage of label case sensitive
     expect(nameElement).toBeInTheDocument();
 
-    const nameElement2 = screen.getByLabelText("Name", {selector: "input"}); // Usage of getByLabelText with htmlFor and id
+    const nameElement2 = screen.getByLabelText("Name", { selector: "input" }); // Usage of getByLabelText with htmlFor and id
     expect(nameElement2).toBeInTheDocument();
 
     const nameElement3 = screen.getByPlaceholderText("Fullname"); // Usage of getByPlaceholderText
     expect(nameElement3).toBeInTheDocument();
+
+    const nameElement4 = screen.getByDisplayValue("Vishwas"); // Usage of getByDisplayValue typically used with form controls
+    expect(nameElement4).toBeInTheDocument();
 
     const bioElement = screen.getByRole("textbox", { name: "Bio" });
     expect(bioElement).toBeInTheDocument();
@@ -59,7 +62,9 @@ describe("Application", () => {
     const termsElement = screen.getByRole("checkbox");
     expect(termsElement).toBeInTheDocument();
 
-    const termElement2 = screen.getByLabelText("I agree to the terms and conditions"); // Usage of nested label without htmlFor and id
+    const termElement2 = screen.getByLabelText(
+      "I agree to the terms and conditions"
+    ); // Usage of nested label without htmlFor and id
     expect(termElement2).toBeInTheDocument();
 
     const submitButtonElement = screen.getByRole("button");
