@@ -1,6 +1,18 @@
 import { render, screen } from "@testing-library/react";
 import { Application } from "./application";
 
+// Now we are learning priority order for queries
+// It is very important to know these and use them in priorilty.
+// 1. getByRole (for almost anything)
+// 2. getByLabelText (good with forms)
+// 3. getByPlaceholderText (one more good for form)
+// 4. getByText 
+// 5. getByDisplayValue
+// 6. getByAltText
+// 7. getByTitle
+// 8. getByTestId
+
+
 // Now we learning about queries that we use commonly for testing
 // RTL Queries - React Testing Library Queries
 // 1. We can start with getByRole query which queries based on HTML aria attribute
