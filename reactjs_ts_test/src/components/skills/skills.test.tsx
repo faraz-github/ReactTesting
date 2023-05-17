@@ -3,6 +3,11 @@ import { Skills } from "./skills";
 
 // Now we will learn getAll "All" query
 
+// Type - Text Match
+// The first argument that we pass in our queries is not actually a string but a TypeMatch
+// It can be string | regex | function
+// 
+
 const skills = ["HTML", "CSS", "JavaScript"];
 
 describe("Skills", () => {
