@@ -36,7 +36,7 @@ describe("Skills", () => {
   // is changed.
 
   // Note: All getBy class of queries throws an error if they can't find the element
-  // So we use queryBy and queryAllBy - returns node if found else null 
+  // So we use queryBy and queryAllBy - returns node if found else null
   // "get" will be replaced with "query" for example getByRole =>  queryByRole
 
   test("Start learning button is not rendered", () => {
@@ -45,5 +45,27 @@ describe("Skills", () => {
       name: "Start learning",
     });
     expect(startLearningButton).not.toBeInTheDocument();
+  });
+
+  // Appearance / Disappearance Cases
+  // Like display after some data is fetched from the external API
+  // getByRole class of queries fail to handle such scenerios
+  // For these cases we use findBy and findAllBy class of queries
+  // findBy -  returns promise which resolves when node found else promise is rejected
+  // after a default timeout of 1000ms can be changed
+  // Note: async await is important
+
+  test("Start learnin button is eventually displayed", async () => {
+    render(<Skills skills={skills} />);
+    const startLearningButton = await screen.findByRole(
+      "button",
+      {
+        name: "Start learning",
+      },
+      {
+        timeout: 2000,
+      }
+    );
+    expect(startLearningButton).toBeInTheDocument();
   });
 });
