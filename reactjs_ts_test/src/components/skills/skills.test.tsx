@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, logRoles } from "@testing-library/react";
 import { Skills } from "./skills";
 
 // Now we will learn getAll "All" query
@@ -55,8 +55,14 @@ describe("Skills", () => {
   // after a default timeout of 1000ms can be changed
   // Note: async await is important
 
+
+  // Debugging in React testing
+  
   test("Start learnin button is eventually displayed", async () => {
-    render(<Skills skills={skills} />);
+    // Log Roles
+    const view = render(<Skills skills={skills} />);
+    logRoles(view.container); // If we need to log all the roles available in our test component we can use logRoles
+    screen.debug(); // Sometimes we need to debug the dom to see if the node is infact available or not
     const startLearningButton = await screen.findByRole(
       "button",
       {
@@ -66,6 +72,9 @@ describe("Skills", () => {
         timeout: 2000,
       }
     );
+    screen.debug(); // It is better to not include in your test after debugging is done
     expect(startLearningButton).toBeInTheDocument();
   });
+
+
 });
