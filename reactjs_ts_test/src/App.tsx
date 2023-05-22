@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Application } from './components/application/application';
+import { Counter } from './components/counter/counter';
 
 // Testing Playground Extension
 // Testing playground extension can be found in google play store 
@@ -12,7 +13,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Application />
+        {/* <Application /> */}
+        <Counter />
       </header>
     </div>
   );
