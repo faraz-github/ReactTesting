@@ -78,4 +78,70 @@ describe("Counter", () => {
     const countElement = screen.getByRole("heading");
     expect(countElement).toHaveTextContent("2");
   });
+
+  // Now we will test some keyboard user event
+  test("render a count of 10 after clicking the set button", async () => {
+    user.setup();
+    render(<Counter />);
+
+    const amountInput = screen.getByRole("spinbutton"); // number is spinbutton
+
+    await user.type(amountInput, "10");
+
+    expect(amountInput).toHaveValue(10);
+
+    const setButton = screen.getByRole("button", {
+      name: "Set",
+    });
+
+    await user.click(setButton);
+
+    const countElement = screen.getByRole("heading");
+    expect(countElement).toHaveTextContent("10");
+  });
+
+  // Now we will test some keyboard tab press focus
+
+  test("elements are focused in the right order", async () => {
+    user.setup();
+    render(<Counter />);
+
+    const amountInput = screen.getByRole("spinbutton"); // number is spinbutton
+    const setButton = screen.getByRole("button", {
+      name: "Set",
+    });
+    const incrementButton = screen.getByRole("button", {
+      name: "Increment",
+    });
+
+    await user.tab(); // tab is used for tab based focus
+    
+    expect(incrementButton).toHaveFocus(); // toHaveFocus is matcher for checking current focus
+
+    await user.tab();
+   
+    expect(amountInput).toHaveFocus();
+
+    await user.tab();
+   
+    expect(setButton).toHaveFocus();
+
+    // Note 
+    // There are three diffrent type of apis associated with keyboard
+    // Utility API
+    // - user.type()
+    // - user.clear()
+    // - user.selectOptions()
+    // - user.deselectOptions()
+    // - user.upload()
+    // Convenience API
+    // - user.tab()
+    // Clipboard API
+    // - user.copy()
+    // - user.cut()
+    // - user.paste()
+
+  });
+
+
 });
