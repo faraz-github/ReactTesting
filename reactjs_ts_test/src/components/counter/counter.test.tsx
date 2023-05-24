@@ -115,18 +115,18 @@ describe("Counter", () => {
     });
 
     await user.tab(); // tab is used for tab based focus
-    
+
     expect(incrementButton).toHaveFocus(); // toHaveFocus is matcher for checking current focus
 
     await user.tab();
-   
+
     expect(amountInput).toHaveFocus();
 
     await user.tab();
-   
+
     expect(setButton).toHaveFocus();
 
-    // Note 
+    // Note
     // There are three diffrent type of apis associated with keyboard
     // Utility API
     // - user.type()
@@ -141,7 +141,8 @@ describe("Counter", () => {
     // - user.cut()
     // - user.paste()
 
+    // Some additional keyboard apis can be used too
+    // - keyboard("foo") translates to: f,o,o,
+    // - keyboard("{Shift>}A{/Shift}") // translates to: Shift(down), A, Shift(up)
   });
-
-
 });
