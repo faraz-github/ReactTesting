@@ -1,16 +1,13 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen } from "../../test-utils"; // Now we have a custom render with providers
 import { MuiMode } from "./mui-mode";
-import { AppProviders } from "../../providers/app-providers";
 
 // Now we will try testing components with providers
-// As they share information passed through providers 
+// As they share information passed through providers
 // Some tests can fail
 
 describe("MuiMode", () => {
   test("renders text correctly", () => {
-    render(<MuiMode />, {
-        wrapper: AppProviders // With the help of wrapper option in render we can pass provider
-    });
+    render(<MuiMode />);
     const headingElement = screen.getByRole("heading");
 
     expect(headingElement).toHaveTextContent("dark mode");
