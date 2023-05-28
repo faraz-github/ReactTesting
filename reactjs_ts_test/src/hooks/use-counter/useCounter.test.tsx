@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react"; // notice renderHook is used
+import { renderHook, act } from "@testing-library/react"; // notice renderHook is used
 import { useCounter } from "./useCounter";
 
 // Now we will test a custom hook as they are pretty common in React
@@ -24,4 +24,23 @@ describe("useCounter", () => {
 
     expect(result.current.count).toBe(10);
   });
+
+  // How to use functions from the custom hook
+
+  test("should increment the count", () => {
+    const { result } = renderHook(useCounter);
+    // For the state updates they don't work out of the box react act() makes sure for such scenerios
+    act(() => result.current.increment());
+
+    expect(result.current.count).toBe(1);
+  });
+
+  test("should decrement the count", () => {
+    const { result } = renderHook(useCounter);
+    // For the state updates they don't work out of the box react act() makes sure for such scenerios
+    act(() => result.current.decrement());
+
+    expect(result.current.count).toBe(-1);
+  });
+
 });
