@@ -1,5 +1,7 @@
 import { render, screen } from "@testing-library/react";
+import { rest } from "msw";
 import { Users } from "./users";
+import { server } from "../mocks/server";
 
 // Now we will learn how to mock the api http requests
 
@@ -19,7 +21,25 @@ describe("Users", () => {
 
     // A good alternative would be to create mock array in diffrent file to used where needed and so the array.length
     expect(users).toHaveLength(3);
+  });
 
-    
+  // How to render errors using msw api mocks
+  // For diffrent handlers
+
+  test("renders error", async () => {
+    server.use(
+      rest.get(
+        "https://jsonplaceholder.typeicode.com/users",
+        (req, res, ctx) => {
+          return res(ctx.status(500));
+        }
+      )
+    );
+
+    render(<Users />);
+
+    const error = await screen.findByText("Error fetching users");
+
+    expect(error).toBeInTheDocument();
   });
 });
