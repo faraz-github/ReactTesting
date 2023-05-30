@@ -1,17 +1,23 @@
 import { render, screen } from "@testing-library/react";
 import { Application } from "./application";
 
+// Now we will learn some static analysis which ensures the quality of written code
+// For this we can use diffrent tools like typescript, eslint, prettier, husky, lint-staged etc
+
+// The below code started to give error after installing ESLint extension right inside the ide
+// console.log(name);
+// const name = "Faraz";
+
 // Now we are learning priority order for queries
 // It is very important to know these and use them in priorilty.
 // 1. getByRole (for almost anything)
 // 2. getByLabelText (good with forms)
 // 3. getByPlaceholderText (one more good for form)
-// 4. getByText 
+// 4. getByText
 // 5. getByDisplayValue
 // 6. getByAltText
 // 7. getByTitle
 // 8. getByTestId
-
 
 // Now we learning about queries that we use commonly for testing
 // RTL Queries - React Testing Library Queries
@@ -25,6 +31,7 @@ import { Application } from "./application";
 // g. some more option can be used like [ hidden, selected, checked, pressed]
 
 describe("Application", () => {
+  // test("renders correctly", async() => {
   test("renders correctly", () => {
     render(<Application />);
 
@@ -40,6 +47,9 @@ describe("Application", () => {
     // expect(sectionHeading).toBeInTheDocument();
 
     // Usage with level
+    // If we add async await on testing queries that are sync
+    // eslint gives us error in our ide
+    // const pageHeading = await screen.getByRole("heading", {
     const pageHeading = screen.getByRole("heading", {
       level: 1, // Usage of level
     });
@@ -90,5 +100,11 @@ describe("Application", () => {
 
     const submitButtonElement = screen.getByRole("button");
     expect(submitButtonElement).toBeInTheDocument();
+
+    // eslint-plugin-jest-dom with the help of this package even assertions can be 
+    // written in best ways
+    // hint use buld when squigly
+    // expect(submitButtonElement).not.toBeEnabled();
+    expect(submitButtonElement).toBeDisabled();
   });
 });
