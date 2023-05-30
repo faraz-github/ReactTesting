@@ -1,5 +1,5 @@
-import { render, screen } from "@testing-library/react";
-import { Greet } from "./greet";
+import { render, screen } from '@testing-library/react'
+import { Greet } from './greet'
 
 // Note: 1 file is considered to be one Test Suite
 
@@ -29,13 +29,13 @@ import { Greet } from "./greet";
 // });
 
 // For coverage Threshold
-describe("Greet", () => {
-  test("Renders correctly", () => {
-    render(<Greet />);
-    const textElement = screen.getByText(/Hello/);
-    expect(textElement).toBeInTheDocument();
-  });
-});
+describe('Greet', () => {
+  test('Renders correctly', () => {
+    render(<Greet />)
+    const textElement = screen.getByText(/Hello/)
+    expect(textElement).toBeInTheDocument()
+  })
+})
 
 //Important Questions
 

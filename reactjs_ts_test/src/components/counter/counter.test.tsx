@@ -1,49 +1,49 @@
-import { render, screen } from "@testing-library/react";
-import user from "@testing-library/user-event"; // First we need to import this package for user interaction
+import { render, screen } from '@testing-library/react'
+import user from '@testing-library/user-event' // First we need to import this package for user interaction
 
-import { Counter } from "./counter";
+import { Counter } from './counter'
 
 // Now we will practice how to use the user-event library to perform user interactions
 
-describe("Counter", () => {
+describe('Counter', () => {
   // Tests for checking the elements to be in the dom
-  test("renders correctly", () => {
-    render(<Counter />);
-    const countElement = screen.getByRole("heading");
-    expect(countElement).toBeInTheDocument();
-    const incrementButton = screen.getByRole("button", {
-      name: "Increment",
-    });
-    expect(incrementButton).toBeInTheDocument();
-  });
+  test('renders correctly', () => {
+    render(<Counter />)
+    const countElement = screen.getByRole('heading')
+    expect(countElement).toBeInTheDocument()
+    const incrementButton = screen.getByRole('button', {
+      name: 'Increment',
+    })
+    expect(incrementButton).toBeInTheDocument()
+  })
 
   // Tests for checking the initial state of component
-  test("renders a count of 0", () => {
-    render(<Counter />);
-    const countElement = screen.getByRole("heading");
-    expect(countElement).toHaveTextContent("0"); // make sure 0 is string
-  });
+  test('renders a count of 0', () => {
+    render(<Counter />)
+    const countElement = screen.getByRole('heading')
+    expect(countElement).toHaveTextContent('0') // make sure 0 is string
+  })
 
   // Tests for user interaction
 
-  test("renders a count of 1 after clicking the increment button", async () => {
-    user.setup(); // This is to make this user interaction ready
+  test('renders a count of 1 after clicking the increment button', async () => {
+    user.setup() // This is to make this user interaction ready
 
     // Step 1 : We render the component
-    render(<Counter />);
+    render(<Counter />)
     // Step 2 : We find the user interactable element
-    const incrementButton = screen.getByRole("button", {
-      name: "Increment",
-    });
+    const incrementButton = screen.getByRole('button', {
+      name: 'Increment',
+    })
 
     // Step 3: We perform the interaction i.e. click or other event
     // Note: all user interactions are async so we do it using async/await
-    await user.click(incrementButton);
+    await user.click(incrementButton)
 
     // Step 4: find the element that is affected by the interaction
-    const countElement = screen.getByRole("heading");
-    expect(countElement).toHaveTextContent("1");
-  });
+    const countElement = screen.getByRole('heading')
+    expect(countElement).toHaveTextContent('1')
+  })
 
   // Some mouse events available are
   // 1. click()
@@ -60,71 +60,71 @@ describe("Counter", () => {
   // 4. pointer("[MouseLeft>]") // To simulated hold button
   // 5. pointer("[/MouseLeft]") // To simulated releasing button
 
-  test("renders a count of 2 after clicking the increment button twice", async () => {
-    user.setup(); // This is to make this user interaction ready
+  test('renders a count of 2 after clicking the increment button twice', async () => {
+    user.setup() // This is to make this user interaction ready
 
     // Step 1 : We render the component
-    render(<Counter />);
+    render(<Counter />)
     // Step 2 : We find the user interactable element
-    const incrementButton = screen.getByRole("button", {
-      name: "Increment",
-    });
+    const incrementButton = screen.getByRole('button', {
+      name: 'Increment',
+    })
 
     // Step 3: We perform the interaction i.e. click or other event
     // Note: all user interactions are async so we do it using async/await
-    await user.dblClick(incrementButton);
+    await user.dblClick(incrementButton)
 
     // Step 4: find the element that is affected by the interaction
-    const countElement = screen.getByRole("heading");
-    expect(countElement).toHaveTextContent("2");
-  });
+    const countElement = screen.getByRole('heading')
+    expect(countElement).toHaveTextContent('2')
+  })
 
   // Now we will test some keyboard user event
-  test("render a count of 10 after clicking the set button", async () => {
-    user.setup();
-    render(<Counter />);
+  test('render a count of 10 after clicking the set button', async () => {
+    user.setup()
+    render(<Counter />)
 
-    const amountInput = screen.getByRole("spinbutton"); // number is spinbutton
+    const amountInput = screen.getByRole('spinbutton') // number is spinbutton
 
-    await user.type(amountInput, "10");
+    await user.type(amountInput, '10')
 
-    expect(amountInput).toHaveValue(10);
+    expect(amountInput).toHaveValue(10)
 
-    const setButton = screen.getByRole("button", {
-      name: "Set",
-    });
+    const setButton = screen.getByRole('button', {
+      name: 'Set',
+    })
 
-    await user.click(setButton);
+    await user.click(setButton)
 
-    const countElement = screen.getByRole("heading");
-    expect(countElement).toHaveTextContent("10");
-  });
+    const countElement = screen.getByRole('heading')
+    expect(countElement).toHaveTextContent('10')
+  })
 
   // Now we will test some keyboard tab press focus
 
-  test("elements are focused in the right order", async () => {
-    user.setup();
-    render(<Counter />);
+  test('elements are focused in the right order', async () => {
+    user.setup()
+    render(<Counter />)
 
-    const amountInput = screen.getByRole("spinbutton"); // number is spinbutton
-    const setButton = screen.getByRole("button", {
-      name: "Set",
-    });
-    const incrementButton = screen.getByRole("button", {
-      name: "Increment",
-    });
+    const amountInput = screen.getByRole('spinbutton') // number is spinbutton
+    const setButton = screen.getByRole('button', {
+      name: 'Set',
+    })
+    const incrementButton = screen.getByRole('button', {
+      name: 'Increment',
+    })
 
-    await user.tab(); // tab is used for tab based focus
+    await user.tab() // tab is used for tab based focus
 
-    expect(incrementButton).toHaveFocus(); // toHaveFocus is matcher for checking current focus
+    expect(incrementButton).toHaveFocus() // toHaveFocus is matcher for checking current focus
 
-    await user.tab();
+    await user.tab()
 
-    expect(amountInput).toHaveFocus();
+    expect(amountInput).toHaveFocus()
 
-    await user.tab();
+    await user.tab()
 
-    expect(setButton).toHaveFocus();
+    expect(setButton).toHaveFocus()
 
     // Note
     // There are three diffrent type of apis associated with keyboard
@@ -144,5 +144,5 @@ describe("Counter", () => {
     // Some additional keyboard apis can be used too
     // - keyboard("foo") translates to: f,o,o,
     // - keyboard("{Shift>}A{/Shift}") // translates to: Shift(down), A, Shift(up)
-  });
-});
+  })
+})

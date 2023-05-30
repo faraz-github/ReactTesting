@@ -1,5 +1,5 @@
-import { render, screen, logRoles } from "@testing-library/react";
-import { Skills } from "./skills";
+import { render, screen, logRoles } from '@testing-library/react'
+import { Skills } from './skills'
 
 // Now we will learn getAll "All" query
 
@@ -8,28 +8,28 @@ import { Skills } from "./skills";
 // It can be string | regex | function
 //
 
-const skills = ["HTML", "CSS", "JavaScript"];
+const skills = ['HTML', 'CSS', 'JavaScript']
 
-describe("Skills", () => {
-  test("renders correctly", () => {
-    render(<Skills skills={skills} />);
-    const listElement = screen.getByRole("list");
-    expect(listElement).toBeInTheDocument();
-  });
+describe('Skills', () => {
+  test('renders correctly', () => {
+    render(<Skills skills={skills} />)
+    const listElement = screen.getByRole('list')
+    expect(listElement).toBeInTheDocument()
+  })
 
-  test("renders a list of skills", () => {
-    render(<Skills skills={skills} />);
-    const listItemElements = screen.getAllByRole("listitem");
-    expect(listItemElements).toHaveLength(skills.length);
-  });
+  test('renders a list of skills', () => {
+    render(<Skills skills={skills} />)
+    const listItemElements = screen.getAllByRole('listitem')
+    expect(listItemElements).toHaveLength(skills.length)
+  })
 
-  test("renders Login button", () => {
-    render(<Skills skills={skills} />);
-    const loginButton = screen.getByRole("button", {
-      name: "Login",
-    });
-    expect(loginButton).toBeInTheDocument();
-  });
+  test('renders Login button', () => {
+    render(<Skills skills={skills} />)
+    const loginButton = screen.getByRole('button', {
+      name: 'Login',
+    })
+    expect(loginButton).toBeInTheDocument()
+  })
 
   // Now we testing how to not find something in the dom
   // like some content that should not be in the dom before the login state
@@ -39,13 +39,13 @@ describe("Skills", () => {
   // So we use queryBy and queryAllBy - returns node if found else null
   // "get" will be replaced with "query" for example getByRole =>  queryByRole
 
-  test("Start learning button is not rendered", () => {
-    render(<Skills skills={skills} />);
-    const startLearningButton = screen.queryByRole("button", {
-      name: "Start learning",
-    });
-    expect(startLearningButton).not.toBeInTheDocument();
-  });
+  test('Start learning button is not rendered', () => {
+    render(<Skills skills={skills} />)
+    const startLearningButton = screen.queryByRole('button', {
+      name: 'Start learning',
+    })
+    expect(startLearningButton).not.toBeInTheDocument()
+  })
 
   // Appearance / Disappearance Cases
   // Like display after some data is fetched from the external API
@@ -57,21 +57,21 @@ describe("Skills", () => {
 
   // Debugging in React testing
 
-  test("Start learnin button is eventually displayed", async () => {
+  test('Start learnin button is eventually displayed', async () => {
     // Log Roles
-    const view = render(<Skills skills={skills} />);
-    logRoles(view.container); // If we need to log all the roles available in our test component we can use logRoles
-    screen.debug(); // Sometimes we need to debug the dom to see if the node is infact available or not
+    const view = render(<Skills skills={skills} />)
+    logRoles(view.container) // If we need to log all the roles available in our test component we can use logRoles
+    screen.debug() // Sometimes we need to debug the dom to see if the node is infact available or not
     const startLearningButton = await screen.findByRole(
-      "button",
+      'button',
       {
-        name: "Start learning",
+        name: 'Start learning',
       },
       {
         timeout: 2000,
       }
-    );
-    screen.debug(); // It is better to not include in your test after debugging is done
-    expect(startLearningButton).toBeInTheDocument();
-  });
-});
+    )
+    screen.debug() // It is better to not include in your test after debugging is done
+    expect(startLearningButton).toBeInTheDocument()
+  })
+})
