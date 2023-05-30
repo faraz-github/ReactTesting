@@ -28,7 +28,6 @@ import { Greet } from "./greet";
 //   });
 // });
 
-
 // For coverage Threshold
 describe("Greet", () => {
   test("Renders correctly", () => {
@@ -36,8 +35,6 @@ describe("Greet", () => {
     const textElement = screen.getByText(/Hello/);
     expect(textElement).toBeInTheDocument();
   });
-
- 
 });
 
 //Important Questions

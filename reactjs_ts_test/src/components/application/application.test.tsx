@@ -101,7 +101,7 @@ describe("Application", () => {
     const submitButtonElement = screen.getByRole("button");
     expect(submitButtonElement).toBeInTheDocument();
 
-    // eslint-plugin-jest-dom with the help of this package even assertions can be 
+    // eslint-plugin-jest-dom with the help of this package even assertions can be
     // written in best ways
     // hint use buld when squigly
     // expect(submitButtonElement).not.toBeEnabled();

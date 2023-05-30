@@ -55,9 +55,8 @@ describe("Skills", () => {
   // after a default timeout of 1000ms can be changed
   // Note: async await is important
 
-
   // Debugging in React testing
-  
+
   test("Start learnin button is eventually displayed", async () => {
     // Log Roles
     const view = render(<Skills skills={skills} />);
@@ -75,6 +74,4 @@ describe("Skills", () => {
     screen.debug(); // It is better to not include in your test after debugging is done
     expect(startLearningButton).toBeInTheDocument();
   });
-
-
 });
